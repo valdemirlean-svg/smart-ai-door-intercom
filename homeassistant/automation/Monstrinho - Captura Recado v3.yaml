@@ -1,0 +1,13 @@
+alias: Monstrinho - Captura Recado v3
+triggers:
+  - event_type: call_service
+    event_data:
+      domain: tts
+      service: speak
+    trigger: event
+actions:
+  - action: input_text.set_value
+    target:
+      entity_id: input_text.ultimo_recado_monstrinho
+    data:
+      value: "{{ trigger.event.data.service_data.message | truncate(250) }}"
