@@ -121,3 +121,26 @@ For security reasons:
 - The gate **never opens automatically for visitors or deliveries**.
 - Access is restricted to **verified residents only** (NFC or facial recognition).
 - The AI **never confirms whether residents are home**.
+
+## Project Structure
+
+This project is organized as follows:
+
+smart-ai-door-intercom/
+├── README.md # This file
+├── LICENSE # MIT License
+├── esphome/ # ESPHome YAML files
+│ └── intercom.yaml
+├── homeassistant/ # Home Assistant automations and scripts
+│ ├── automations.yaml
+│ └── scripts.yaml
+├── prompts/ # AI prompts for Gemini
+│ └── gemini_system_prompt.txt
+├── audio/ # Local audio files for greetings, offline messages, etc.
+│ ├── ola_ajudar.mp3
+│ ├── sistema_offline.mp3
+│ └── fora_do_horario.mp3
+└── images/ # Hardware photos and wiring diagrams
+├── wiring_diagram.jpg
+├── intercom_installed.jpg
+└── hardware_setup.jpg
