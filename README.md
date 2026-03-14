@@ -36,3 +36,88 @@ The system prioritizes privacy and security and will **never reveal whether resi
 - Home Assistant host PC
 - USB sound card
 - Desktop speakers
+
+## System Flow
+
+### 1. Special Operating Modes
+
+**Do Not Disturb (23:00 - 07:00)**  
+If the doorbell button is pressed during night hours, the system plays a local audio message informing that residents are unavailable and asking the visitor to return in the morning.
+
+**Offline Fallback**  
+If the internet connection is unavailable, the system switches to offline mode and plays a message informing that the system is temporarily offline.
+
+---
+
+### 2. Resident Access
+
+Residents can open the gate using two authentication methods:
+
+**NFC Access (Primary)**  
+A passive NFC tag is installed at the gate. When a resident scans it with their smartphone, Home Assistant triggers the gate relay.
+
+**Facial Recognition (Secondary)**  
+If a person remains in front of the gate for several seconds, the system captures a snapshot from the camera and analyzes it using AI. If the person is recognized as a resident, access can be granted.
+
+---
+
+### 3. Visitor Interaction
+
+During normal hours and when internet connectivity is available, the system performs a fully autonomous interaction.
+
+1. **Button Press**  
+   The visitor presses the illuminated button.
+
+2. **Greeting**  
+   A pre-recorded greeting message is played.
+
+3. **Voice Capture**  
+   After the greeting finishes, the microphone activates and records the visitor's message.
+
+4. **AI Processing**  
+   The audio is transcribed and analyzed by the AI to determine the visitor's intent.
+
+5. **Intent Classification**
+   The system determines whether the visitor is:
+   - a delivery driver
+   - a personal visitor
+   - an unknown interaction
+
+---
+
+### 4. Delivery Flow
+
+If the AI identifies a delivery:
+
+- The system asks who the delivery is for.
+- Home Assistant checks the `group.familia` presence status.
+
+**Resident Home**
+- A voice announcement is played inside the house.
+
+**Resident Away**
+- The AI asks the driver if they can deliver to an alternative address on the same street.
+- If the driver agrees, the alternative address is provided.
+
+---
+
+### 5. Visit Flow
+
+If the interaction is a personal visit:
+
+**Resident Home**
+- The system announces the visitor inside the house.
+
+**Resident Away**
+- The system offers to record a message.
+- The message is transcribed and sent as a private notification to the specific resident.
+
+---
+
+### Security Model
+
+For security reasons:
+
+- The gate **never opens automatically for visitors or deliveries**.
+- Access is restricted to **verified residents only** (NFC or facial recognition).
+- The AI **never confirms whether residents are home**.
