@@ -6,7 +6,6 @@ sequence:
     data:
       cache: true
       media_player_entity_id: media_player.vlc_telnet
-      message: >-
-        {{ mensagem_do_gemini | default('Atenção!!! Tem uma encomenda no portão.
-        . . O entregador está esperando.') }}
+      message: Atenção!!! Tem uma encomenda no portão. . . O entregador está esperando.
 mode: single
+
