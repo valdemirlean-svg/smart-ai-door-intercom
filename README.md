@@ -122,7 +122,7 @@ For security reasons:
 - Access is restricted to **verified residents only** (NFC or facial recognition).
 - The AI **never confirms whether residents are home**.
 
-## 🤖 AI Prompt & Local Audio Files
+## AI Prompt & Local Audio Files
 
 ### AI Prompt
 
