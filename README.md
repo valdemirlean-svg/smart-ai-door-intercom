@@ -130,10 +130,19 @@ This project is organized as follows:
   - intercom.yaml
 - homeassistant/
   - automation/
-    - automations_button.yaml
-    - automations_radar.yaml
-    - automations_ai.yaml
-    - scripts.yaml
+    - Ativar Monstrão por Presença com Cooldown.yaml
+    - Monstrinho - Captura Recado v3.yaml
+    - NFC - Abrir portão e Notificar Usuário.yaml
+    - Notificação de visita.yaml
+    - Porteiro - Direcionar Notificação de Entrega.yaml
+    - Tratar clique na notificação
+  - scripts/
+    - Anunciar entrega na casa.yaml
+    - Anunciar visita na casa.yaml
+    - Notificação - Entrega no vizinho.yaml
+    - Notificação - Recusa de Entrega no vizinho.yaml
+    - Processar Reconhecimento Facial por Movimento.yaml
+    - Registrar e Notificar Recado.yaml
 - audio/
   - ola_ajudar.mp3
   - sistema_offline.mp3
