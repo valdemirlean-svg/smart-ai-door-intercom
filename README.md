@@ -129,7 +129,7 @@ This project is organized as follows:
 - esphome/
   - intercom.yaml
 - homeassistant/
-  - smart_ai_door_intercom/
+  - automation/
     - automations_button.yaml
     - automations_radar.yaml
     - automations_ai.yaml
