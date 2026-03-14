@@ -144,3 +144,20 @@ smart-ai-door-intercom/
 ├── wiring_diagram.jpg
 ├── intercom_installed.jpg
 └── hardware_setup.jpg
+
+## 📸 Project Gallery
+
+### Intercom Installed
+![Intercom Installed](images/intercom_installed.jpg)
+
+### Front Panel Detail
+![Front Panel Detail](images/front_panel.jpg)
+
+### Internal Hardware Setup (Front)
+![Internal Hardware Setup Front](images/front_internal_setup.jpg)
+
+### Internal Hardware Setup (Rear)
+![Internal Hardware Setup Rear](images/rear_internal_setup.jpg)
+
+### Wiring Diagram
+![Wiring Diagram](images/wiring_diagram.jpg)
