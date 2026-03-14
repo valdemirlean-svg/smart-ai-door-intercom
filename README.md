@@ -16,9 +16,9 @@ The system prioritizes privacy and security and will **never reveal whether resi
 - Offline fallback mode when internet is unavailable
 - Do Not Disturb schedule during night hours
 
-- ## Hardware
+## Hardware
 
-External Unit (Gate)
+### External Unit (Gate)
 
 - ESP32-S3 Zero
 - LD2410C mmWave radar
@@ -31,7 +31,7 @@ External Unit (Gate)
 - RTSP camera
 - USB wall outlet module 5V / 2A
 
-Internal Unit (Announcements)
+### Internal Unit (Announcements)
 
 - Home Assistant host PC
 - USB sound card
