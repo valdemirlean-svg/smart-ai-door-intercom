@@ -1,0 +1,15 @@
+alias: "Porteiro: Tratar clique na notificação"
+description: Abre o portão quando o botão da notificação é pressionado
+triggers:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: ABRIR_PORTAO_MONSTRAO
+    trigger: event
+actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.porteiro_esp32_zero_trava_do_portao
+  - action: notify.mobile_seu_celular
+    data:
+      message: Portão liberado via comando remoto.
+mode: single
