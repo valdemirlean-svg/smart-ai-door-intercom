@@ -6,6 +6,6 @@ sequence:
     data:
       cache: true
       media_player_entity_id: media_player.vlc_telnet
-      message: Tem visita no portão
+      message: Atenção!!! Tem visita no portão.
 mode: single
 description: Anuncia por voz dentro da casa que há uma visita no portão.
