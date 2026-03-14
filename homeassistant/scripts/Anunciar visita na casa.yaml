@@ -1,0 +1,11 @@
+alias: Anunciar visita na casa
+sequence:
+  - action: tts.speak
+    target:
+      entity_id: tts.piper
+    data:
+      cache: true
+      media_player_entity_id: media_player.vlc_telnet
+      message: Tem visita no portão
+mode: single
+description: Anuncia por voz dentro da casa que há uma visita no portão.

@@ -1,0 +1,40 @@
+alias: "Monstrinho: Registrar e Notificar Recado"
+fields:
+  texto_do_recado:
+    name: Texto do Recado
+    required: true
+    selector:
+      text: null
+  destinatario:
+    name: Destinatário
+    description: jose ou maria
+    required: true
+    selector:
+      text: null
+sequence:
+  - action: input_text.set_value
+    target:
+      entity_id: input_text.ultimo_recado_monstrinho
+    data:
+      value: "{{ texto_do_recado | truncate(250) }}"
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ destinatario == 'jose' }}"
+        sequence:
+          - action: notify.mobile_celular_jose
+            data:
+              title: 📝 Recado para Jose
+              message: "{{ texto_do_recado }}"
+              data:
+                image: /local/porteiro_last.jpg?v={{ now().strftime('%H%M%S') }}
+      - conditions:
+          - condition: template
+            value_template: "{{ destinatario == 'maria' }}"
+        sequence:
+          - action: notify.mobile_celular_maria
+            data:
+              title: 📝 Recado para Maria
+              message: "{{ texto_do_recado }}"
+              data:
+                image: /local/porteiro_last.jpg?v={{ now().strftime('%H%M%S') }}

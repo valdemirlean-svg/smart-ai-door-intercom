@@ -1,0 +1,18 @@
+sequence:
+  - action: camera.snapshot
+    data:
+      filename: /config/www/entrega.jpg
+    target:
+      entity_id: camera.camera_porteiro
+  - delay: "00:00:01"
+  - action: notify.mobile_seu_celular
+    data:
+      title: 📦 Entrega em endereço alternativ.!
+      message: >-
+        Chegou uma encomenda pra você e o entregador confirmou que vai entregar
+        no vizinho.
+      data:
+        image: /local/entrega.jpg?v={{ ts }}
+        clickAction: /local/entrega.jpg?v={{ ts }}
+alias: Notificação - Entrega no vizinho
+description: ""

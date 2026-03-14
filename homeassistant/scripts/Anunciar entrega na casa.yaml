@@ -1,0 +1,12 @@
+alias: Anunciar entrega na casa
+sequence:
+  - action: tts.speak
+    target:
+      entity_id: tts.piper
+    data:
+      cache: true
+      media_player_entity_id: media_player.vlc_telnet
+      message: >-
+        {{ mensagem_do_gemini | default('Atenção!!! Tem uma encomenda no portão.
+        . . O entregador está esperando.') }}
+mode: single

@@ -1,0 +1,73 @@
+alias: Processar Reconhecimento Facial por Movimento
+sequence:
+  - action: light.turn_on
+    target:
+      entity_id: light.porteiro_esp32_zero_monstrinho_led_botao
+    data:
+      effect: Analisando
+  - action: camera.snapshot
+    data:
+      filename: /media/porteiro_last.jpg
+    target:
+      entity_id:
+        - camera.camera_porteiro
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: ai_task.generate_data
+    continue_on_error: true
+    data:
+      task_name: porteiro_reconhecimento
+      entity_id: ai_task.google_ai_task
+      attachments:
+        - media_content_id: media-source://media_source/local/jose_referencia.jpg
+          media_content_type: image/jpeg
+        - media_content_id: media-source://media_source/local/maria_referencia.jpg
+          media_content_type: image/jpeg
+        - media_content_id: media-source://media_source/local/antonio_referencia.jpg
+          media_content_type: image/jpeg
+        - media_content_id: media-source://media_source/local/porteiro_last.jpg
+          media_content_type: image/jpeg
+      instructions: >-
+        Você é um porteiro de segurança. Compare a ÚLTIMA foto com as TRÊS
+        PRIMEIRAS fotos de referência. REGRAS: 1. Se a pessoa na última foto for
+        o Jose, responda apenas 'JOSE'. 2. Se for a Maria, responda
+        apenas 'MARIA'. 3. Se for o Antonio, responda apenas 'ANTONIO'. 4.
+        Se não for nenhum deles ou estiver vazio, responda 'NEGADO'.
+    response_variable: analise_ia
+  - if:
+      - condition: template
+        value_template: |-
+          {{ analise_ia is defined 
+             and analise_ia.data is defined 
+             and analise_ia.data | upper in ['JOSE','MARIA','ANTONIO'] }}
+    then:
+      - action: light.turn_off
+        target:
+          entity_id: light.porteiro_esp32_zero_monstrinho_led_botao
+      - action: switch.turn_on
+        target:
+          entity_id: switch.porteiro_esp32_zero_trava_do_portao
+      - action: tts.speak
+        data:
+          media_player_entity_id: media_player.porteiro_esp32_zero_porteiro_media_player
+          message: Bem-vindo {{ analise_ia.data.strip() | capitalize }}.
+      - action: notify.mobile_seu_celular
+        data:
+          title: Monstrão Informa
+          message: >-
+            Portão aberto: {{ analise_ia.data.strip() | capitalize }}
+            identificado(a).
+    else:
+      - action: light.turn_off
+        target:
+          entity_id: light.porteiro_esp32_zero_monstrinho_led_botao
+      - stop: Pessoa não autorizada.
+  - action: light.turn_off
+    target:
+      entity_id: light.porteiro_esp32_zero_monstrinho_led_botao
+    data: {}
+mode: single
+description: ""

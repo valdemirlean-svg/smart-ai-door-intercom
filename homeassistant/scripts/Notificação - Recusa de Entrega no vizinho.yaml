@@ -1,0 +1,16 @@
+sequence:
+  - action: camera.snapshot
+    data:
+      filename: /config/www/entrega.jpg
+    target:
+      entity_id: camera.camera_porteiro
+  - delay: "00:00:01"
+  - action: notify.seu_celular
+    data:
+      title: 📦 Entrega em endereço alternativo!
+      message: O entregador disse que não pode deixar a encomenda no vizinho.
+      data:
+        image: /local/entrega.jpg?v={{ ts }}
+        clickAction: /local/entrega.jpg?v={{ ts }}
+alias: Notificação - Recusa de Entrega no vizinho
+description: ""
