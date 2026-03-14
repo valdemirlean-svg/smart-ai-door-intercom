@@ -122,6 +122,43 @@ For security reasons:
 - Access is restricted to **verified residents only** (NFC or facial recognition).
 - The AI **never confirms whether residents are home**.
 
+## 🤖 AI Prompt & Local Audio Files
+
+### AI Prompt
+
+The AI conversation prompt for the intercom is saved in: homeassistant/prompt_AI_conversation.txt
+
+
+**Assist Configuration:**
+
+- **Name:** Porteiro  
+- **Conversation Agent:** Google AI Conversation  
+- **STT:** Google AI STT (Portuguese Brazil)  
+- **TTS:** Piper (chosen for lower latency)
+
+The prompt ensures **privacy and security** by never revealing whether residents are home to visitors or delivery drivers.
+
+---
+
+### Local Audio Files
+
+The system uses the following audio files, located in `/config/www/`:
+
+| File | Purpose |
+|------|---------|
+| `ola_ajudar.mp3` | Initial greeting for visitors |
+| `sistema_offline.mp3` | Message played when the system is offline |
+| `fora_do_horario.mp3` | Message during the “Do Not Disturb” period |
+
+**How the audio files were generated:**
+
+1. Open **Developer Tools → Actions** in Home Assistant.  
+2. Select **Entities:** `Piper`  
+3. Set **Target:** `VLC-TELNET`  
+4. Type the phrase for the audio and execute the action.  
+5. Before generating, clear the TTS folder using File Editor (easier to locate new files).  
+6. After generation, download the audio files and save them in `/config/www/`.
+
 ## Project Structure
 
 This project is organized as follows:
